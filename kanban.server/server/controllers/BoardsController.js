@@ -15,7 +15,7 @@ export class BoardsController extends BaseController {
 
   async deleteByBoardId(req, res, next) {
     try {
-      const board = await boardsService.deleteByBoardId(req.params.boardId, req.userInfo.Id)
+      const board = await boardsService.deleteByBoardId(req.params.boardId)
       return res.send(board)
     } catch (error) {
       next(error)
@@ -27,7 +27,7 @@ export class BoardsController extends BaseController {
       const board = await boardsService.editBoard(req.params.boardId, req.body)
       return res.send(board)
     } catch (error) {
-      next(error)
+      next(error, 'controllerror')
     }
   }
 

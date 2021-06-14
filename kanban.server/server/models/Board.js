@@ -9,3 +9,9 @@ export const BoardSchema = new Schema(
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
+BoardSchema.virtual('creator', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: '_id',
+  justOne: true
+})

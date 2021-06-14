@@ -18,11 +18,13 @@ class BoardsService {
 
   async editBoard(boardId, boardData) {
     // const board = await dbContext.Board.findById(boardId)
-    return await dbContext.Board.findByIdAndUpdate(boardId, boardData, { new: true, runValidators: true }).populate('creatorId')
+    const board = await dbContext.Board.findByIdAndUpdate(boardId, boardData, { new: true, runValidators: true })
+    await board.populate('creatorId').execPopulate()
+    return board
   }
 
-  async deleteByBoardId(boardId, userId) {
-    await dbContext.Board.findOneAndDelete({ _id: boardId, creatorId: userId })
+  async deleteByBoardId(boardId) {
+    await dbContext.Board.findOneAndDelete(boardId)
     return 'deleted'
   }
 }
