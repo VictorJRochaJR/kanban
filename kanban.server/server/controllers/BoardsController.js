@@ -7,8 +7,8 @@ export class BoardsController extends BaseController {
     super('api/boards')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/:creatorId', this.getBoardsById)
-      .get('/:creatorId/:boardId', this.getOneBoard)
+      .get('', this.getBoardsById)
+      .get('/:boardId', this.getOneBoard)
       .post('', this.createBoard)
       .put('/:boardId', this.editBoard)
       .delete('/:boardId', this.deleteByBoardId)
@@ -53,7 +53,7 @@ export class BoardsController extends BaseController {
 
   async getBoardsById(req, res, next) {
     try {
-      const board = await boardsService.getBoardsById(req.params.creatorId)
+      const board = await boardsService.getBoardsById(req.userInfo.id)
       return res.send(board)
     } catch (error) {
       next(error, 'controller')
