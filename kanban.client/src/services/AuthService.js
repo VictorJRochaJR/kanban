@@ -5,6 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { boardsService } from './BoardsService'
+import Notification from '../utils/Notification'
 
 export const AuthService = initialize({
   domain,

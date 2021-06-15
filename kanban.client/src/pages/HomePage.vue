@@ -16,11 +16,9 @@
 </template>
 
 <script>
-import Notification from '../utils/Notification'
-import { computed, reactive, watchEffect } from '@vue/runtime-core'
-import { boardsService } from '../services/BoardsService'
+
+import { computed, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import { logger } from '../utils/Logger'
 export default {
   name: 'Home',
   setup() {
