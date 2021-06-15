@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Cards v-for="c in cards" :key="c.id" :cards="c" />
+    <CardTemplate v-for="c in state.cards" :key="c.id" :card="c" />
   </div>
 </template>
 
