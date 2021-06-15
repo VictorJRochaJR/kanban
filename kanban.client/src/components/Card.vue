@@ -1,31 +1,29 @@
 <template>
   <div class="row">
-    Cards
+    <Cards v-for = "c in cards" :key="c.id" :cards="c" />
   </div>
 </template>
 
 <script>
+import {cardsService} from CardsService
+import{AppState} from '../AppState'
+import { reactive } from '@vue/reactivity'
 export default {
-  data() {
-    return {
-      cards: computed(() => AppState.cards)
-    }
-  },
   setup() {
+      const state = reactive({
+          cards: computed(() => AppState.cards)
+      })
    onMounted(async() => {
        try {
            cardService.getCardsById()     
        } catch (error) {
            console.log(error)
        }
-   }
 
-    
    }) 
-   return {
-       state
-   },
-  components: {}
+   return state
+  
+  
 }
 
 </script>
