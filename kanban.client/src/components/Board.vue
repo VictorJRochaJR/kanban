@@ -1,5 +1,14 @@
 <template>
-  I'm a board
+  <div class="col-3 m-2">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" :src="board.backgroundImg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ board.title }}
+        </h5>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
