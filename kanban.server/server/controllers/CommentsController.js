@@ -27,7 +27,7 @@ export class CommentsController extends BaseController {
       const comment = await commentsService.editComment(req.params.commentId, req.body)
       return res.send(comment)
     } catch (error) {
-      next(error, 'controllerror')
+      next(error)
     }
   }
 
@@ -46,7 +46,7 @@ export class CommentsController extends BaseController {
       const comment = await commentsService.getCommentsById(req.params.taskId)
       return res.send(comment)
     } catch (error) {
-      next(error, 'controller')
+      next(error)
     }
   }
 }

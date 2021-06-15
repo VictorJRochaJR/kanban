@@ -27,8 +27,8 @@ class BoardsService {
     logger.log(AppState.allBoards)
   }
 
-  async deleteByBoardId() {
-    const res = await api.delete('api/boards')
+  async deleteByBoardId(boardId) {
+    const res = await api.delete('api/boards/' + boardId)
     logger.log(res)
     this.getBoardsById(AppState.account.id)
   }
