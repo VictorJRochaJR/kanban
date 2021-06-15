@@ -17,7 +17,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        await cardsService.getCardsById()
+        await cardsService.getCardsById('60c8cdc128a0d91eb023a2cc')
       } catch (error) {
         console.log(error)
       }
