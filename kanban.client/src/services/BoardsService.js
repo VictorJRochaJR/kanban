@@ -20,6 +20,18 @@ class BoardsService {
     logger.log(res)
     AppState.allBoards = [res.data, ...AppState.allBoards]
   }
+
+  async editBoard(boardId, boardData) {
+    await api.put('api/boards/' + boardId, boardData)
+    this.getBoardsById(AppState.account.id)
+    logger.log(AppState.allBoards)
+  }
+
+  async deleteByBoardId() {
+    const res = await api.delete('api/boards')
+    logger.log(res)
+    this.getBoardsById(AppState.account.id)
+  }
 }
 
 export const boardsService = new BoardsService()
