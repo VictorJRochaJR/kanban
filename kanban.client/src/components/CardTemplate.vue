@@ -1,6 +1,18 @@
 <template>
-  <div class="row">
-    {{ card.title }}
+  <div class="CreateCard row">
+    <div v-if="state.formHidden" @click="isHidden = !isHidden" id="createCardForm">
+      <form id="createCardForm" @submit.prevent="createCard">
+        <input type="
+          text"
+               v-model="state.newCard.title"
+               placeholder="title"
+        >
+        <button class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+    {{ props.title }}
   </div>
 </template>
 
@@ -16,15 +28,33 @@ export default {
   },
   setup(props) {
     const state = reactive({
-
+      newCard: {},
+      formhidden: true
     })
     return {
       state,
+      isHidden() {
+        state.formhidden = !state.formhidden
+      },
+      async createCard() {
+        try {
+          await cardsService.createCard(state.newCard)
+        } catch (error) {
+          console.log(error)
+        }
+      },
 
       async deleteCardById() {
         if (await Notification.confirmAction('Are you sure you want to delete?')) {
           cardsService.deleteCardById(props.card.id)
           console.log(props.card.id, 'deleted card')
+        }
+      },
+      async editCard() {
+        try {
+          await cardsService.editCard(props.card)
+        } catch (error) {
+          console.log(error)
         }
       }
     }
@@ -33,6 +63,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="
+          scss"
+          scoped
+    >
 </style>
