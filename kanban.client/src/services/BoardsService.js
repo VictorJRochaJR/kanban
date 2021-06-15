@@ -15,8 +15,10 @@ class BoardsService {
     AppState.activeBoard = res.data
   }
 
-  async createBoard() {
-
+  async createBoard(boardData) {
+    const res = await api.post('api/boards', boardData)
+    logger.log(res)
+    AppState.allBoards = [res.data, ...AppState.allBoards]
   }
 }
 
