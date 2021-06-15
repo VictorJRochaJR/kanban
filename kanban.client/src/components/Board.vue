@@ -1,13 +1,14 @@
 <template>
-  <div class="col-3 m-2">
-    <div class="card">
-      <img class="card-img-top" :src="board.backgroundImg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ board.title }}
-        </h5>
-      </div>
+  <div class="col-3 m-2 my-img">
+    <div class="card" :style="{'background-image': 'url(' + board.backgroundImg + ')'}">
+      <!-- <img class="card-img-top" :src="board.backgroundImg" alt="Card image cap"> -->
+      <h5>
+        {{ board.title }}
+      </h5>
     </div>
+    <button class="btn btn-warning btn-sm">
+      Edit
+    </button>
   </div>
 </template>
 
@@ -29,5 +30,4 @@ export default {
 </script>
 
 <style>
-
 </style>
