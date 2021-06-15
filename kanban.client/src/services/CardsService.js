@@ -1,11 +1,31 @@
+import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class CardsService {
-  async getCardsById(id) {
-    const res = await api.get('api/cards/' + '60c8cdc128a0d91eb023a2cc')
-    console.log('thecards', res.data.cards)
-    AppState.cards = res.data.cards
+  async getCardsById() {
+    const route = useRoute()
+    const res = await api.get('api/cards/' + route.params)
+    logger.log(res)
+    AppState.cards = res.data
+  }
+
+  async createCard(cardData) {
+    const res = await api.post('api/cards', cardData)
+    logger.log(res)
+    AppState.cards = [res.data, ...AppState.cards]
+  }
+
+  async editCard(cardData) {
+    await api.put('api/cards/' + cardData.id)
+    this.getCardsById(AppState.activeBoard.id)
+  }
+
+  async deleteByCardId(cardId) {
+    const res = await api.delete('api/cards/' + cardId)
+    logger.log(res)
+    this.getCardsById(AppState.activeBoard.id)
   }
 }
 
