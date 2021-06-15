@@ -18,7 +18,7 @@ class BoardsService {
   async createBoard(boardData) {
     const res = await api.post('api/boards', boardData)
     logger.log(res)
-    AppState.allBoards = [res.data, ...AppState.allBoards]
+    AppState.allBoards.push(res.data)
   }
 
   async editBoard(boardId, boardData) {

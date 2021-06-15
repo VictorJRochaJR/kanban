@@ -14,11 +14,11 @@ class CardsService {
   async createCard(cardData) {
     const res = await api.post('api/cards', cardData)
     logger.log(res)
-    AppState.cards = [res.data, ...AppState.cards]
+    AppState.cards.push(res.data)
   }
 
   async editCard(cardData) {
-    await api.put('api/cards/' + cardData.id)
+    await api.put('api/cards/' + cardData.id, cardData)
     this.getCardsById(AppState.activeBoard.id)
   }
 
