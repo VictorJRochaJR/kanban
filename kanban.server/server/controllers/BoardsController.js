@@ -8,9 +8,19 @@ export class BoardsController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:creatorId', this.getBoardsById)
+      .get('/:creatorId/:boardId', this.getOneBoard)
       .post('', this.createBoard)
       .put('/:boardId', this.editBoard)
       .delete('/:boardId', this.deleteByBoardId)
+  }
+
+  async getOneBoard(req, res, next) {
+    try {
+      const board = await boardsService.getOneBoard(req.params.boardId)
+      return res.send(board)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async deleteByBoardId(req, res, next) {

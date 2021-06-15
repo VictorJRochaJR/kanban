@@ -7,10 +7,20 @@ export class TasksController extends BaseController {
     super('api/tasks')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('/:cardId/:taskId', this.getOneTask)
       .get('/:cardId', this.getTasksById)
       .post('', this.createTask)
       .put('/:taskId', this.editTask)
       .delete('/:taskId', this.deleteByTaskId)
+  }
+
+  async getOneTask(req, res, next) {
+    try {
+      const task = await tasksService.getOneTask(req.params.taskId)
+      return res.send(task)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async deleteByTaskId(req, res, next) {

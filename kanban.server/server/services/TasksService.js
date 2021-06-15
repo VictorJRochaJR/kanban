@@ -2,6 +2,14 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class TasksService {
+  async getOneTask(taskId) {
+    const task = await dbContext.Task.findById(taskId).populate('creatorId')
+    if (!task) {
+      throw new BadRequest('Invalid Id')
+    }
+    return task
+  }
+
   async getTasksById(cardId) {
     const task = await dbContext.Task.find({ cardId: cardId }).populate('cardId')
     if (!task) {

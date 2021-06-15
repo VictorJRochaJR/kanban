@@ -2,6 +2,14 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class BoardsService {
+  async getOneBoard(boardId) {
+    const board = await dbContext.Board.findById(boardId).populate('creatorId')
+    if (!board) {
+      throw new BadRequest('Invalid Id')
+    }
+    return board
+  }
+
   async getBoardsById(creatorId) {
     const board = await dbContext.Board.find({ creatorId: creatorId }).populate('creatorId')
     if (!board) {
