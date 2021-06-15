@@ -5,7 +5,10 @@
 <script>
 import { reactive } from '@vue/reactivity'
 export default {
-  setup() {
+  props: {
+    board: { type: Object, required: true }
+  },
+  setup(props) {
     const state = reactive({
 
     })

@@ -1,21 +1,33 @@
 <template>
   <h1>home page</h1>
-  <Board />
+  <Board v-for="b in state.boards" :key="b.id" :board="b" />
 </template>
 
 <script>
+import Notification from '../utils/Notification'
+import { computed, onMounted, reactive } from '@vue/runtime-core'
+import { boardsService } from '../services/BoardsService'
+import { AppState } from '../AppState'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    onMounted(async() => {
+      try {
+        boardsService.getAllBoards()
+      } catch (error) {
+        Notification.toast(error, 'error')
+      }
+    })
+    const state = reactive({
+      boards: computed(() => AppState.boards)
+    })
+    return {
+      state
+    }
+  }
 }
 </script>
 
-<style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
-}
+<style>
+
 </style>
