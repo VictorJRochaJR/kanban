@@ -1,4 +1,5 @@
 <template>
+  <h1>Card info</h1>
   <div class="CreateCard row">
     <div v-if="state.formHidden" @click="isHidden = !isHidden" id="createCardForm">
       <form id="createCardForm" @submit.prevent="createCard">
@@ -12,7 +13,7 @@
         </button>
       </form>
     </div>
-    {{ props.title }}
+    {{ card.title }}
   </div>
 </template>
 
@@ -63,8 +64,5 @@ export default {
 }
 </script>
 
-<style lang="
-          scss"
-          scoped
-    >
+<style lang="scss" scoped>
 </style>
