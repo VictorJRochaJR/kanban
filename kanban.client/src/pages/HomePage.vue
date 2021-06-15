@@ -19,10 +19,14 @@ export default {
       }
     })
     const state = reactive({
-      boards: computed(() => AppState.boards)
+      boards: computed(() => AppState.boards),
+      account: computed(() => AppState.account)
     })
     return {
-      state
+      state,
+      test() {
+        console.log(state.account)
+      }
     }
   }
 }
