@@ -10,22 +10,25 @@ class CardsService {
     return card
   }
 
-  async createCard(cardData, boardId) {
-    const card = await dbContext.Card.create
-    // await card.populate('creatorId')
+  async createCard(cardData) {
+    const card = await dbContext.Card.create(cardData)
+    await card.populate('creatorId')
     return card
   }
 
   async editCard(cardId, cardData) {
-    // const board = await dbContext.Board.findById(boardId)
+    // const card = await dbContext.Card.findById(cardId)
     const card = await dbContext.Card.findByIdAndUpdate(cardId, cardData, { new: true, runValidators: true })
     await card.populate('creatorId').execPopulate()
     return card
   }
 
   async deleteByCardId(cardId) {
-    await dbContext.Card.findOneAndDelete(cardId)
-    return 'deleted'
+    const card = await dbContext.Card.findOneAndRemove({ _id: cardId })
+    if (!card) {
+      throw new BadRequest('invalid id')
+    }
+    return (cardId + 'deleted')
   }
 }
 

@@ -8,7 +8,7 @@ export class CardsController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:boardId', this.getCardsById)
-      .post('/:boardId', this.createCard)
+      .post('', this.createCard)
       .put('/:cardId', this.editCard)
       .delete('/:cardId', this.deleteByCardId)
   }
@@ -27,17 +27,15 @@ export class CardsController extends BaseController {
       const card = await cardsService.editCard(req.params.cardId, req.body)
       return res.send(card)
     } catch (error) {
-      next(error)
+      next(error, 'controllerror')
     }
   }
 
   async createCard(req, res, next) {
     try {
-      // req.body.creatorId = req.userInfo.id
-      const cardData = req.body
-      card.creatorId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const card = await cardsService.createCard(req.body)
-      return res.senc(card)
+      return res.send(card)
     } catch (error) {
       next(error)
     }

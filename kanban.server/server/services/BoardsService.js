@@ -24,8 +24,11 @@ class BoardsService {
   }
 
   async deleteByBoardId(boardId) {
-    await dbContext.Board.findOneAndDelete(boardId)
-    return 'deleted'
+    const board = await dbContext.Board.findOneAndRemove({ _id: boardId })
+    if (!board) {
+      throw new BadRequest('invalid id')
+    }
+    return (boardId + 'deleted')
   }
 }
 
