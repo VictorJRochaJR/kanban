@@ -14,7 +14,7 @@
        aria-labelledby="exampleModalLabel"
        aria-hidden="true"
   >
-    <form @submit.prevent.="createBoard">
+    <form @submit.prevent="createBoard">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

@@ -10,6 +10,7 @@ import { AppState } from '../AppState'
 import { reactive } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
     const state = reactive({
@@ -17,7 +18,8 @@ export default {
     })
     onMounted(async() => {
       try {
-        await cardsService.getCardsById('60c8cdc128a0d91eb023a2cc')
+        const route = useRoute()
+        await cardsService.getCardsById(route.params)
       } catch (error) {
         console.log(error)
       }
