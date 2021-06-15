@@ -1,6 +1,6 @@
 <template>
   <div class="col-3 m-2">
-    <div class="card" style="width: 18rem;">
+    <div class="card">
       <img class="card-img-top" :src="board.backgroundImg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">

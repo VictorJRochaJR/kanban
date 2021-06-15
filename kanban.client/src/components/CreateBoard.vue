@@ -14,7 +14,7 @@
        aria-labelledby="exampleModalLabel"
        aria-hidden="true"
   >
-    <form @submit.prevent.="createBoard">
+    <form @submit.prevent="createBoard">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -29,7 +29,7 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button type="submit" class="btn btn-primary" data-dismiss="modal">
+            <button type="submit" class="btn btn-primary">
               Create
             </button>
           </div>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import { reactive } from '@vue/reactivity'
 import { boardsService } from '../services/BoardsService'
 export default {
@@ -51,6 +52,7 @@ export default {
       state,
       createBoard() {
         boardsService.createBoard(state.newBoard)
+        $('#exampleModal').modal('hide')
         state.newBoard = {}
       }
     }
