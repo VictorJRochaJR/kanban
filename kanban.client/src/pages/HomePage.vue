@@ -29,14 +29,6 @@ export default {
       account: computed(() => AppState.account),
       user: computed(() => AppState.user)
     })
-    watchEffect(async() => {
-      try {
-        await boardsService.getBoardsById(state.account.id)
-        logger.log(state.account.id)
-      } catch (error) {
-        Notification.toast(error, 'error')
-      }
-    })
 
     return {
       state

@@ -3,8 +3,8 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class BoardsService {
-  async getBoardsById(creatorId) {
-    const res = await api.get(`api/boards/${creatorId}`)
+  async getBoardsById() {
+    const res = await api.get('api/boards')
     logger.log(res)
     AppState.allBoards = res.data
   }
