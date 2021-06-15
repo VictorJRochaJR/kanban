@@ -5,5 +5,6 @@ export const AppState = reactive({
   user: {},
   account: {},
   allBoards: [],
-  cards: []
+  cards: [],
+  activeBoard: {}
 })
