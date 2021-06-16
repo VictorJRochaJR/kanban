@@ -1,18 +1,18 @@
 <template>
   <h1>Card info</h1>
   <div class="CreateCard row">
-    <div v-if="state.formHidden" @click="isHidden = !isHidden" id="createCardForm">
-      <form id="createCardForm" @submit.prevent="createCard">
-        <input type="
+    <form id="createCardForm" @submit.prevent="createCard">
+      <input type="
           text"
-               v-model="state.newCard.title"
-               placeholder="title"
-        >
-        <button class="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
+             v-model="state.newCard.title"
+             placeholder="title"
+      >
+      <button class="btn btn-primary">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div>
     {{ card.title }}
   </div>
 </template>
