@@ -15,6 +15,7 @@
     </div>
     {{ card.title }}
   </div>
+  <Task v-for="task in state.task" :key="task.id" :task="task" />
 </template>
 
 <script>
@@ -22,6 +23,9 @@ import { reactive } from '@vue/reactivity'
 import { cardsService } from '../services/CardsService'
 // import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
+import { computed, watchEffect } from '@vue/runtime-core'
+import { tasksService } from '../services/TasksService'
+import { AppState } from '../AppState'
 
 export default {
   props: {
@@ -30,7 +34,11 @@ export default {
   setup(props) {
     const state = reactive({
       newCard: {},
-      formhidden: true
+      formhidden: true,
+      tasks: computed(() => AppState.tasks)
+    })
+    watchEffect(() => {
+      tasksService.getTasksById(props.card.id)
     })
     return {
       state,
