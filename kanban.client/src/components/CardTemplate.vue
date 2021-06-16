@@ -1,11 +1,10 @@
 <template>
   <div class="col-4 card align-items-center">
     <div>
-      <h1>Card info</h1>
       <div>
         {{ card.title }}
       </div>
-      <Task v-for="task in state.tasks" :key="task.id" :task="task" />
+      <Tasks v-for="task in state.tasks" :key="task.id" :task="task" />
       <CreateTask :card-id="card.id" />
     </div>
     <div>
@@ -32,8 +31,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
-
-      tasks: computed(() => AppState.tasks)
+      tasks: computed(() => AppState.tasks[props.card.id])
     })
     watchEffect(() => {
       tasksService.getTasksById(props.card.id)
