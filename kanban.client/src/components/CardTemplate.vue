@@ -9,12 +9,24 @@
       <CreateTask :card-id="card.id" />
     </div>
     <div>
-      <button @click="deleteByCardId">
+      <button class="btn btn-primary" @click="deleteByCardId">
         Delete
       </button>
-      <button @click="editCard">
+      <button class="btn btn-primary" @click="editCard">
         Edit
       </button>
+      <form @submit.prevent="editCard" class="mt-4 border bg-primary p-3">
+        <div class="form-group text-center">
+          <label for="exampleFormControlInput1">Edit Card</label>
+          <input type="text"
+                 v-model="state.editedCard.title"
+                 class="form-control"
+                 id="exampleFormControlInput1"
+                 placeholder="Change Title Here"
+                 required
+          >
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -32,6 +44,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
+      editedCard: { id: props.card.id },
 
       tasks: computed(() => AppState.tasks)
     })
@@ -48,9 +61,10 @@ export default {
       },
       async editCard() {
         try {
-          await cardsService.editCard(props.card)
+          await cardsService.editCard(state.editedCard, props.card)
         } catch (error) {
           console.log(error)
+          console.log(props.card.id)
         }
       }
     }

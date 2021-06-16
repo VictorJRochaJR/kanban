@@ -17,9 +17,10 @@ class CardsService {
     AppState.cards.push(res.data)
   }
 
-  async editCard(cardData) {
-    await api.put('api/cards/' + cardData.id, cardData)
-    this.getCardsById(AppState.activeBoard.id)
+  async editCard(cardData, cardProp) {
+    debugger
+    await api.put('api/cards/' + cardData.id, cardData.title)
+    this.getCardsById(cardProp.boardId)
   }
 
   async deleteByCardId(cardId) {
