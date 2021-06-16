@@ -1,6 +1,8 @@
 <template>
   <div class="row">
-    <CardTemplate v-for="c in state.cards" :key="c.id" :card="c" />
+    <div class="card align-items-center">
+      <CardTemplate v-for="c in state.cards" :key="c.id" :card="c" />
+    </div>
   </div>
 </template>
 

@@ -1,14 +1,20 @@
 <template>
-  <div class="border col-4">
-    <h1>Card info</h1>
+  <div class="col-4">
     <div>
-      {{ card.title }}
+      <h1>Card info</h1>
+      <div>
+        {{ card.title }}
+      </div>
+      <Task v-for="task in state.task" :key="task.id" :task="task" />
+      <CreateTask />
     </div>
-    <Task v-for="task in state.task" :key="task.id" :task="task" />
-    <CreateTask />
+  </div>
+  <div>
+    <button @click="deleteByCardId">
+      Delete
+    </button>
   </div>
 </template>
-
 <script>
 import { reactive } from '@vue/reactivity'
 import { cardsService } from '../services/CardsService'
@@ -31,9 +37,9 @@ export default {
     })
     return {
       state,
-      async deleteCardById() {
+      async deleteByCardId() {
         if (await Notification.confirmAction('Are you sure you want to delete?')) {
-          cardsService.deleteCardById(props.card.id)
+          cardsService.deleteByCardId(props.card.id)
           console.log(props.card.id, 'deleted card')
         }
       },
@@ -49,6 +55,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+    <style lang="scss" scoped>
+    </style>
