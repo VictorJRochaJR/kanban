@@ -9,8 +9,8 @@ class BoardsService {
     AppState.allBoards = res.data
   }
 
-  async getOneBoard(creatorId, boardId) {
-    const res = await api.get(`api/${creatorId}/${boardId}`)
+  async getOneBoard(boardId) {
+    const res = await api.get(`api/boards/${boardId}`)
     logger.log(res)
     AppState.activeBoard = res.data
   }
