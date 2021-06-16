@@ -27,7 +27,7 @@ export default {
       try {
         await commentsService.getCommentsById(AppState.activeTask.id)
       } catch (error) {
-        Notification.toast(error)
+        Notification.toast(error.message)
       }
     })
     return {

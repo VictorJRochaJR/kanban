@@ -35,7 +35,7 @@ export default {
             await commentsService.deleteByCommentId(props.comment.id)
           }
         } catch (error) {
-          Notification.toast(error)
+          Notification.toast(error.message)
         }
       }
     }

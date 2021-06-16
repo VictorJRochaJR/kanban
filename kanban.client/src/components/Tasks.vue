@@ -30,7 +30,7 @@ export default {
             await tasksService.deleteByTaskId(props.task.id)
           }
         } catch (error) {
-          Notification.toast(error)
+          Notification.toast(error.message)
         }
       }
     }

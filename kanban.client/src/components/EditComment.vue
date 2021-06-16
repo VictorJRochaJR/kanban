@@ -32,7 +32,7 @@ export default {
         try {
           await commentsService.editComment(state.newComment)
         } catch (error) {
-          Notification.toast(error)
+          Notification.toast(error.message)
         }
       }
     }

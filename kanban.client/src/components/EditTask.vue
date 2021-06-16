@@ -33,7 +33,7 @@ export default {
         try {
           await tasksService.editTask(state.newTask)
         } catch (error) {
-          Notification.toast(error)
+          Notification.toast(error.message)
         }
       }
     }
