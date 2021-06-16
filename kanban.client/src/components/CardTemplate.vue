@@ -1,18 +1,18 @@
 <template>
-  <div class="col-4">
+  <div class="col-4 card align-items-center">
     <div>
       <h1>Card info</h1>
       <div>
         {{ card.title }}
       </div>
       <Task v-for="task in state.task" :key="task.id" :task="task" />
-      <CreateTask />
+      <CreateTask :card-id="card.id" />
     </div>
-  </div>
-  <div>
-    <button @click="deleteByCardId">
-      Delete
-    </button>
+    <div>
+      <button @click="deleteByCardId">
+        Delete
+      </button>
+    </div>
   </div>
 </template>
 <script>
