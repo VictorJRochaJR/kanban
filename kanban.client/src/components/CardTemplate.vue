@@ -5,6 +5,7 @@
       {{ card.title }}
     </div>
     <Task v-for="task in state.task" :key="task.id" :task="task" />
+    <CreateTask />
   </div>
 </template>
 
