@@ -22,7 +22,7 @@ export default {
     watchEffect(async() => {
       if (AppState.account.id) {
         try {
-          await cardsService.getCardsById(route.params)
+          await cardsService.getCardsById(route.params.id)
           console.log(AppState.cards)
         } catch (error) {
           console.log(error)
