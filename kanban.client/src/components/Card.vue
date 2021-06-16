@@ -11,6 +11,7 @@ import { reactive } from '@vue/reactivity'
 import { watchEffect } from '@vue/runtime-core'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import Notification from '../utils/Notification'
 export default {
   setup() {
     const route = useRoute()
@@ -20,10 +21,10 @@ export default {
     watchEffect(async() => {
       if (AppState.account.id) {
         try {
-          await cardsService.getCardsById(route.params.id)
-          console.log(AppState.cards)
+          await cardsService.getCardsById(route.params.boardId)
+          console.log(AppState.cards, 'the cards')
         } catch (error) {
-          console.log(error)
+          Notification.toast(error.message)
         }
       }
     })

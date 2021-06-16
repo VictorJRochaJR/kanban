@@ -3,9 +3,10 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class CardsService {
-  async getCardsById(board) {
-    const res = await api.get('api/cards/' + board.boardId)
-    logger.log(res)
+  async getCardsById(boardId) {
+    console.log(boardId)
+    const res = await api.get('api/cards/' + boardId)
+    logger.log(res, 'getcards')
     AppState.cards = res.data
   }
 
