@@ -4,14 +4,13 @@ import { api } from './AxiosService'
 
 class CardsService {
   async getCardsById(board) {
-    console.log(board.boardId)
-    console.log(AppState.account)
     const res = await api.get('api/cards/' + board.boardId)
     logger.log(res)
     AppState.cards = res.data
   }
 
   async createCard(cardData) {
+    console.log(cardData)
     const res = await api.post('api/cards', cardData)
     logger.log(res)
     AppState.cards.push(res.data)
