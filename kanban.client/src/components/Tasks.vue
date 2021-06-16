@@ -15,13 +15,14 @@ export default {
   props: {
     task: { type: Object, required: true }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
 
     })
     return {
       state,
-      selectTask(props) {
+      selectTask() {
+        console.log(props.task)
         AppState.activeTask = props.task
       },
       async deleteTask(props) {

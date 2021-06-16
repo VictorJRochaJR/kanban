@@ -13,8 +13,8 @@
         </button>
       </form>
     </div>
-    <Card />
     <ActiveTask v-if="state.task.id" />
+    <Card />
   </div>
 </template>
 
