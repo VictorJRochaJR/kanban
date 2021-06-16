@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row d-flex justify-content-center">
       <div v-if="!state.user.isAuthenticated">
         <h1>
