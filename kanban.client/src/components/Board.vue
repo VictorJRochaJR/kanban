@@ -1,9 +1,9 @@
 <template>
   <div class="col-md-4 col-lg-3 my-img p-0 ">
-    <div class="card my-card mx-4 mt-4" title="Open Board" @click="openBoard" :style="{'background-image': 'url(' + board.backgroundImg + ')'}">
+    <div class="card my-card mx-4 mt-4" title="Open Board" @click.stop="openBoard" :style="{'background-image': 'url(' + board.backgroundImg + ')'}">
       <div class="">
         <div class="rounded-circle my-btn-bg ab-pos">
-          <i @click="editBoard" title="Edit Board" class="my-edit mdi mdi-pencil mdi-12px px-1">
+          <i data-toggle="modal" data-target="#editmodal" @click.stop="editBoard" title="Edit Board" class="my-edit mdi mdi-pencil mdi-12px px-1">
           </i>
         </div>
       </div>
@@ -14,11 +14,51 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade"
+       id="editmodal"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="editmodalLabel"
+       aria-hidden="true"
+  >
+    <form @submit.prevent="updateBoard">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <label class="sr-only" for="Board Title"></label>
+            <input v-model="state.activeBoard.title" class="modal-title w-100" placeholder="Board Title..." required>
+          </div>
+          <div class="modal-body">
+            <label class="sr-only" for="Board Image URL"></label>
+            <input v-model="state.activeBoard.backgroundImg" class="modal-title w-100" placeholder="Img URL...">
+          </div>
+          <div class="modal-footer">
+            <button @click="deleteByBoardId" type="button" class="btn btn-danger" data-dismiss="modal">
+              Delete
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
+import $ from 'jquery'
 import { reactive } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
+import { boardsService } from '../services/BoardsService'
+import { AppState } from '../AppState'
+import { computed } from '@vue/runtime-core'
+import Notification from '../utils/Notification'
 
 export default {
   props: {
@@ -27,19 +67,47 @@ export default {
   setup(props) {
     const router = useRouter()
     const state = reactive({
+      activeBoard: computed(() => AppState.activeBoard)
 
     })
     return {
       state,
-      editBoard() {
-
+      async editBoard() {
+        try {
+          await boardsService.getOneBoard(props.board.id)
+          $('#editmodal').modal('show')
+        } catch (error) {
+          Notification.toast(error.message, 'error')
+        }
       },
-      async openBoard() {
-        router.push(`/board/${props.board.id}`)
+      async updateBoard() {
+        try {
+          $('#editmodal').modal('hide')
+          await boardsService.editBoard(state.activeBoard.id, state.activeBoard)
+        } catch (error) {
+          Notification.toast(error.message, 'error')
+        }
+      },
+      openBoard() {
+        try {
+          router.push(`/board/${props.board.id}`)
+        } catch (error) {
+          Notification.toast(error.message, 'error')
+        }
+      },
+      async deleteByBoardId() {
+        try {
+          if (await Notification.confirmAction('Are you sure?', `This will permanently delete ${state.activeBoard.title}`, 'warning', 'Delete')) {
+            await boardsService.deleteByBoardId(state.activeBoard.id)
+          }
+        } catch (error) {
+          Notification.toast(error.message, 'error')
+        }
       }
     }
   }
 }
+
 </script>
 
 <style>
