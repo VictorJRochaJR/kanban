@@ -5,12 +5,15 @@
       <div>
         {{ card.title }}
       </div>
-      <Task v-for="task in state.task" :key="task.id" :task="task" />
+      <Task v-for="task in state.tasks" :key="task.id" :task="task" />
       <CreateTask :card-id="card.id" />
     </div>
     <div>
       <button @click="deleteByCardId">
         Delete
+      </button>
+      <button @click="editCard">
+        Edit
       </button>
     </div>
   </div>
