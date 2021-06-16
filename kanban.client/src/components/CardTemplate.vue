@@ -6,7 +6,7 @@
         {{ card.title }}
       </div>
       <Task v-for="task in state.task" :key="task.id" :task="task" />
-      <CreateTask />
+      <CreateTask :card-id="card.id" />
     </div>
     <div>
       <button @click="deleteByCardId">

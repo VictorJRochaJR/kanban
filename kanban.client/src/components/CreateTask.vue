@@ -15,10 +15,13 @@ import { reactive } from '@vue/reactivity'
 import Notification from '../utils/Notification'
 import { tasksService } from '../services/TasksService'
 export default {
-  setup() {
+  props: {
+    cardId: { type: String, required: true }
+  },
+  setup(props) {
     const state = reactive({
       newTask: {
-
+        cardId: props.cardId
       }
     })
     return {
