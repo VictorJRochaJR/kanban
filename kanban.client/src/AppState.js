@@ -7,7 +7,7 @@ export const AppState = reactive({
   allBoards: [],
   cards: [],
   activeBoard: {},
-  tasks: [],
+  tasks: {},
   activeTask: {},
   comments: []
 })

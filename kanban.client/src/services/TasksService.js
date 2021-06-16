@@ -10,15 +10,14 @@ class TasksService {
 
   async getTasksById(cardId) {
     const res = await api.get('api/tasks/' + cardId)
-    logger.log(res)
-    AppState.tasks = res.data
+    AppState.tasks[cardId] = res.data
   }
 
   async createTask(taskData) {
-    console.log(taskData)
     const res = await api.post('api/tasks', taskData)
     logger.log(res)
     AppState.tasks.push(res.data)
+    console.log(AppState.tasks)
   }
 
   async editTask(taskData) {
