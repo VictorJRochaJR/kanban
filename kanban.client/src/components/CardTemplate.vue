@@ -5,7 +5,7 @@
       <div>
         {{ card.title }}
       </div>
-      <Task v-for="task in state.task" :key="task.id" :task="task" />
+      <Task v-for="task in state.tasks" :key="task.id" :task="task" />
       <CreateTask :card-id="card.id" />
     </div>
     <div>
@@ -32,9 +32,7 @@ export default {
 
       tasks: computed(() => AppState.tasks)
     })
-    watchEffect(() => {
-      tasksService.getTasksById(props.card.id)
-    })
+    watchEffect(() => tasksService.getTasksById(props.card.id))
     return {
       state,
       async deleteByCardId() {
