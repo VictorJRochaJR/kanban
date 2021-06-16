@@ -1,27 +1,27 @@
 <template>
-  <h1>Card info</h1>
-  <div class="CreateCard row">
-    <div v-if="state.formHidden" @click="isHidden = !isHidden" id="createCardForm">
-      <form id="createCardForm" @submit.prevent="createCard">
-        <input type="
-          text"
-               v-model="state.newCard.title"
-               placeholder="title"
-        >
-        <button class="btn btn-primary">
-          Submit
-        </button>
-      </form>
+  <div class="col-4 card align-items-center">
+    <div>
+      <h1>Card info</h1>
+      <div>
+        {{ card.title }}
+      </div>
+      <Task v-for="task in state.task" :key="task.id" :task="task" />
+      <CreateTask :card-id="card.id" />
     </div>
-    {{ card.title }}
+    <div>
+      <button @click="deleteByCardId">
+        Delete
+      </button>
+    </div>
   </div>
 </template>
-
 <script>
 import { reactive } from '@vue/reactivity'
 import { cardsService } from '../services/CardsService'
-// import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
+import { computed, watchEffect } from '@vue/runtime-core'
+import { tasksService } from '../services/TasksService'
+import { AppState } from '../AppState'
 
 export default {
   props: {
@@ -29,25 +29,17 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      newCard: {},
-      formhidden: true
+
+      tasks: computed(() => AppState.tasks)
+    })
+    watchEffect(() => {
+      tasksService.getTasksById(props.card.id)
     })
     return {
       state,
-      isHidden() {
-        state.formhidden = !state.formhidden
-      },
-      async createCard() {
-        try {
-          await cardsService.createCard(state.newCard)
-        } catch (error) {
-          console.log(error)
-        }
-      },
-
-      async deleteCardById() {
+      async deleteByCardId() {
         if (await Notification.confirmAction('Are you sure you want to delete?')) {
-          cardsService.deleteCardById(props.card.id)
+          cardsService.deleteByCardId(props.card.id)
           console.log(props.card.id, 'deleted card')
         }
       },
@@ -59,10 +51,9 @@ export default {
         }
       }
     }
-  },
-  components: {}
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+    <style lang="scss" scoped>
+    </style>

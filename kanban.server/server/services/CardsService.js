@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class CardsService {
   async getCardsById(boardId) {
-    const card = await dbContext.Card.find({ boardId: boardId }).populate('boardId')
+    const card = await dbContext.Card.findById(boardId).populate('boardId')
     if (!card) {
       throw new BadRequest('invalid service')
     }
