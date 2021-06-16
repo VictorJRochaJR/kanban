@@ -17,7 +17,9 @@ import { tasksService } from '../services/TasksService'
 export default {
   setup() {
     const state = reactive({
-      newTask: {}
+      newTask: {
+
+      }
     })
     return {
       state,

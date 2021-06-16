@@ -37,7 +37,7 @@ export class TasksController extends BaseController {
       const task = await tasksService.editTask(req.params.taskId, req.body)
       return res.send(task)
     } catch (error) {
-      next(error, 'controllerror')
+      next(error)
     }
   }
 
