@@ -1,7 +1,7 @@
 <template>
   <h1>Board Page</h1>
   <Card />
-  <ActiveTask v-if="task.id" />
+  <ActiveTask v-if="state.task.id" />
 </template>
 
 <script>
