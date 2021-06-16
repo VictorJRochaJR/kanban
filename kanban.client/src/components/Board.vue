@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-3 mx-1 mt-1 my-img p-0">
-    <div class="card my-card" title="Open Board" @click="openBoard" :style="{'background-image': 'url(' + board.backgroundImg + ')'}">
+  <div class="col-md-4 col-lg-3 my-img p-0 ">
+    <div class="card my-card mx-4 mt-4" title="Open Board" @click="openBoard" :style="{'background-image': 'url(' + board.backgroundImg + ')'}">
       <div class="">
         <div class="rounded-circle my-btn-bg ab-pos">
           <i @click="editBoard" title="Edit Board" class="my-edit mdi mdi-pencil mdi-12px px-1">
@@ -18,11 +18,14 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
+
 export default {
   props: {
     board: { type: Object, required: true }
   },
   setup(props) {
+    const router = useRouter()
     const state = reactive({
 
     })
@@ -31,8 +34,8 @@ export default {
       editBoard() {
 
       },
-      openBoard() {
-
+      async openBoard() {
+        router.push(`/board/${props.board.id}`)
       }
     }
   }
@@ -59,9 +62,10 @@ color: rgb(221, 169, 0);
 }
 .my-card{
   cursor: pointer;
-  height: 7rem;
+  height: 13rem;
   color: white;
   transition: all, 1s;
+  background-size: cover;
 }
 .my-card:hover{
 
