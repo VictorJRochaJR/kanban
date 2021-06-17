@@ -1,5 +1,8 @@
 <template>
   <div class="container-fluid " :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
+    <button class="myButton2 pos-ab m-4" title="your boards" @click="boardPage()">
+      Your Boards
+    </button>
     <div class="row justify-content-center py-3">
       <h1 class="my-text">
         {{ state.board.title }}
@@ -28,11 +31,12 @@
 </template>
 
 <script>
+
 import { reactive } from '@vue/reactivity'
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { cardsService } from '../services/CardsService'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { boardsService } from '../services/BoardsService'
 export default {
   name: 'Board',
@@ -45,6 +49,7 @@ export default {
       }
     })
     const route = useRoute()
+    const router = useRouter()
     const state = reactive({
       board: computed(() => AppState.activeBoard),
       task: computed(() => AppState.activeTask),
@@ -56,6 +61,9 @@ export default {
     })
     return {
       state,
+      boardPage() {
+        router.push({ name: 'Home' })
+      },
       isHidden() {
         state.formHidden = !state.formHidden
       },
@@ -74,6 +82,32 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+.myButton2 {
+  z-index: 3;
+background:linear-gradient(to bottom, #525252 5%, #000000 100%);
+background-color:#525252;
+border-radius:36px;
+border:1px solid #a8a8a8;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:Arial;
+font-size:16px;
+padding:2px 12px;
+text-decoration:none;
+}
+.myButton2:hover {
+background:linear-gradient(to bottom, #000000 5%, #525252 100%);
+background-color:#000000;
+
+}
+.myButton2:active {
+position:absolute;
+top:1px;
+}
+.pos-ab{
+  position: absolute;
+}
 
 .height{
   height: 80%;
