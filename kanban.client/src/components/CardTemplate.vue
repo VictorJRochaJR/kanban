@@ -1,10 +1,10 @@
 <template>
-  <div class="col-md-4 mx-2 card align-items-center fill">
+  <div class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill">
     <div class="d-flex justify-content-between">
       <span>
         {{ card.title }}
       </span>
-      <button class="btn btn-danger" @click="deleteByCardId">
+      <button class="btn btn-danger text-alignt: right;" @click="deleteByCardId">
         X
       </button>
     </div>
