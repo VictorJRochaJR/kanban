@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center py-5">
-      <h1>My Board Title</h1>
+      <h1>Board here:</h1>
     </div>
-    <div class="row">
+    <div class="y-scroll">
       <ActiveTask v-if="state.task.id" />
       <Card v-else />
       <div v-if="!state.task.id" class="col-md-4 bg-white shadow border rounded">
@@ -36,7 +36,8 @@ export default {
     const state = reactive({
       task: computed(() => AppState.activeTask),
       newCard: {
-        boardId: route.params.boardId
+        boardId: route.params.boardId,
+        board: computed(() => AppState.activeBoard)
       },
       formHidden: false
     })
@@ -61,6 +62,12 @@ export default {
 <style>
 .createform{
   min-width: 90vh
+}
+.y-scroll{
+  overflow-y: auto;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
 }
 /* *{
   outline: 1px solid red;

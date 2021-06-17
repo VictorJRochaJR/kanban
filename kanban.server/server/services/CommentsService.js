@@ -2,9 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
-  async getCommentsById(taskId) {
-    const comment = await dbContext.Comment.find({ taskId: taskId })
-    comment.populate('creatorId').execPopulate()
+  async getCommentsById(id) {
+    const comment = await dbContext.Comment.find({ taskId: id }).populate('creatorId')
     if (!comment) {
       throw new BadRequest('invalid service')
     }
