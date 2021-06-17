@@ -110,7 +110,7 @@ top:1px;
 }
 
 .height{
-  height: 80%;
+  min-height: calc(100vh - (88px + 35px)) ;
 }
 
 .createform{
