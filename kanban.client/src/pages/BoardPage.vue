@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
     <div class="row justify-content-center py-5">
       <h1>My Board Title</h1>
     </div>
@@ -26,15 +26,24 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { cardsService } from '../services/CardsService'
 import { useRoute } from 'vue-router'
+import { boardsService } from '../services/BoardsService'
 export default {
   name: 'Board',
   setup() {
+    onMounted(async() => {
+      try {
+        AppState.activeBoard = await boardsService.getOneBoard(route.params.boardId)
+      } catch (error) {
+        Notification.toast(error.message)
+      }
+    })
     const route = useRoute()
     const state = reactive({
+      board: computed(() => AppState.activeBoard),
       task: computed(() => AppState.activeTask),
       newCard: {
         boardId: route.params.boardId
