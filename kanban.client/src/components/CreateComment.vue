@@ -1,4 +1,7 @@
 <template>
+  <div class="add" @click="toggleForm" v-if="!state.toggle">
+    + add task
+  </div>
   <form @submit.prevent="createComment">
     <div class="form-group">
       <label class="sr-only" for="Comment Title"></label>
@@ -27,7 +30,8 @@ export default {
         taskId: computed(() => AppState.activeTask.id),
         title: '',
         content: ''
-      }
+      },
+      toggle: false
     })
     return {
       state,
@@ -37,7 +41,11 @@ export default {
         } catch (error) {
           Notification.toast(error.message)
         }
+      },
+      toggleForm() {
+        state.toggle = !state.toggle
       }
+
     }
   }
 }

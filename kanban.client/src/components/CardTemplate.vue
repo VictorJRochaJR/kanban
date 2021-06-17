@@ -1,17 +1,18 @@
 <template>
   <div class="col-4 card align-items-center">
-    <div>
-      <div>
+    <div class="d-flex justify-content-between">
+      <span>
         {{ card.title }}
-      </div>
-      <Tasks v-for="task in state.tasks" :key="task.id" :task="task" />
-      <CreateTask :card-id="card.id" />
-    </div>
-    <div>
-      <button class="btn btn-primary" @click="deleteByCardId">
-        Delete
+      </span>
+      <button class="btn btn-danger" @click="deleteByCardId">
+        X
       </button>
-      <button class="btn btn-primary" @click="editCard">
+    </div>
+    <Tasks v-for="task in state.tasks" :key="task.id" :task="task" />
+    <CreateTask :card-id="card.id" />
+  </div>
+  <div>
+    <!-- <button class="btn btn-primary" @click="editCard">
         Edit
       </button>
       <form @submit.prevent="editCard" class="mt-4 border bg-primary p-3">
@@ -25,8 +26,7 @@
                  required
           >
         </div>
-      </form>
-    </div>
+      </form> -->
   </div>
 </template>
 <script>
@@ -57,19 +57,22 @@ export default {
           cardsService.deleteByCardId(props.card.id)
           console.log(props.card.id, 'deleted card')
         }
-      },
-      async editCard() {
-        try {
-          await cardsService.editCard(state.editedCard, props.card)
-        } catch (error) {
-          console.log(error)
-          console.log(props.card.id)
-        }
       }
+      // async editCard() {
+      //   try {
+      //     await cardsService.editCard(state.editedCard, props.card)
+      //   } catch (error) {
+      //     console.log(error)
+      //     console.log(props.card.id)
+      //   }
+      // }
     }
   }
 }
 </script>
 
     <style lang="scss" scoped>
+    .fill{
+      width: 90%;
+    }
     </style>

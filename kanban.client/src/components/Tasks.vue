@@ -1,15 +1,25 @@
 <template>
-  <div class="row justify-content-between">
-    <div class="border click col-8 text-center" @click="selectTask">
+  <div class="row justify-content-between my-3 p-3 shadow border rounded fill">
+    <div class="click text-left col" @click="selectTask">
       <span>{{ task.title }}</span>
     </div>
-    <div class="col-4">
-      <button class="btn btn-info" @click="move">
-        move
-      </button>
-      <button class="btn btn-danger ml-3 m-2" @click="deleteTask" title="Delete task">
-        X
-      </button>
+    <div class=" ">
+      <div class="dropdown click text-secondary align-top"
+           id="dropdownMenuButton"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false"
+      >
+        ...
+      </div>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button class="text-info dropdown-item" @click="move">
+          Move Task
+        </button>
+        <button class="text-danger dropdown-item" @click="deleteTask" title="Delete task">
+          Delete Task
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -53,5 +63,8 @@ export default {
 <style scope>
 .click{
   cursor: pointer;
+}
+.fill{
+  min-width: 90%;
 }
 </style>
