@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class CardsService {
-  async getCardsById(boardId) {
-    const card = await dbContext.Card.find({ boardId: boardId }).populate('boardId')
+  async getCardsById(id) {
+    const card = await dbContext.Card.find({ boardId: id }).populate('boardId')
     if (!card) {
       throw new BadRequest('invalid service')
     }
@@ -23,8 +23,8 @@ class CardsService {
     return card
   }
 
-  async deleteByCardId(cardId) {
-    const card = await dbContext.Card.findOneAndRemove({ _id: cardId })
+  async deleteByCardId(cardId, userId) {
+    const card = await dbContext.Card.findOneAndRemove({ _id: cardId, creatorId: userId })
     if (!card) {
       throw new BadRequest('invalid id')
     }

@@ -15,7 +15,7 @@ export class CardsController extends BaseController {
 
   async deleteByCardId(req, res, next) {
     try {
-      const card = await cardsService.deleteByCardId(req.params.cardId)
+      const card = await cardsService.deleteByCardId(req.params.cardId, req.userInfo.id)
       return res.send(card)
     } catch (error) {
       next(error)

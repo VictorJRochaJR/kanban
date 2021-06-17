@@ -30,8 +30,8 @@ class TasksService {
     return task
   }
 
-  async deleteByTaskId(taskId) {
-    const task = await dbContext.Task.findOneAndRemove({ _id: taskId })
+  async deleteByTaskId(taskId, userId) {
+    const task = await dbContext.Task.findOneAndRemove({ _id: taskId, creatorId: userId })
     if (!task) {
       throw new BadRequest('invalid id')
     }

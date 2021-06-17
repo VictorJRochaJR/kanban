@@ -22,8 +22,8 @@ class CommentsService {
     return comment
   }
 
-  async deleteByCommentId(commentId) {
-    const comment = await dbContext.Comment.findOneAndRemove({ _id: commentId })
+  async deleteByCommentId(commentId, userId) {
+    const comment = await dbContext.Comment.findOneAndRemove({ _id: commentId, creatorId: userId })
     if (!comment) {
       throw new BadRequest('invalid id')
     }
