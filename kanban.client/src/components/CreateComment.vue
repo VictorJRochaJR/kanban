@@ -1,9 +1,13 @@
 <template>
   <form @submit.prevent="createComment">
-    <label class="sr-only" for="Comment Title"></label>
-    <input v-model="state.newComment.title" placeholder="Comment Title..." required>
-    <label class="sr-only" for="Comment Content"></label>
-    <input v-model="state.newComment.content" placeholder="Comment Content..." required>
+    <div class="form-group">
+      <label class="sr-only" for="Comment Title"></label>
+      <input v-model="state.newComment.title" placeholder="Comment Title..." required>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="Comment Content"></label>
+      <input v-model="state.newComment.content" placeholder="Comment Content...">
+    </div>
     <button class="btn btn-primary" type="submit">
       post comment
     </button>

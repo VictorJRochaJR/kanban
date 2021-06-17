@@ -15,9 +15,8 @@ class TasksService {
 
   async createTask(taskData) {
     const res = await api.post('api/tasks', taskData)
-    logger.log(res)
-    AppState.tasks.push(res.data)
-    console.log(AppState.tasks)
+    console.log(taskData)
+    AppState.tasks[taskData.cardId].push(res.data)
   }
 
   async editTask(taskData) {
@@ -27,8 +26,7 @@ class TasksService {
   }
 
   async deleteByTaskId(taskData) {
-    const res = await api.delete('api/tasks/' + taskData.id)
-    logger.log(res)
+    await api.delete('api/tasks/' + taskData.id)
     this.getTasksById(taskData.cardId)
   }
 }

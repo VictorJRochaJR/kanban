@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="row">
-      <h1>Board Page</h1>
+    <div class="row" v-if="!state.task.id">
+      <h3>Add card</h3>
       <form id="create-card-form" @submit.prevent="createCard">
         <input type="
           text"
@@ -13,8 +13,10 @@
         </button>
       </form>
     </div>
-    <ActiveTask v-if="state.task.id" />
-    <Card />
+    <div class="row">
+      <ActiveTask v-if="state.task.id" />
+      <Card v-else />
+    </div>
   </div>
 </template>
 

@@ -9,5 +9,6 @@ export const AppState = reactive({
   activeBoard: {},
   tasks: {},
   activeTask: {},
-  comments: []
+  comments: [],
+  movingTask: {}
 })

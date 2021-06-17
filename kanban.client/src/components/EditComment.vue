@@ -1,13 +1,19 @@
 <template>
-  <form @submit.prevent="editComment">
-    <label class="sr-only" for="Comment Title"></label>
-    <input v-model="state.newComment.title" placeholder="Comment Title..." required>
-    <label class="sr-only" for="Comment Content"></label>
-    <input v-model="state.newComment.content" placeholder="Comment Content...">
-    <button class="btn btn-primary" type="submit">
-      edit comment
-    </button>
-  </form>
+  <div class="border">
+    <form @submit.prevent="editComment">
+      <div class="form-group">
+        <label class="sr-only" for="Comment Title"></label>
+        <input class="form-control" v-model="state.newComment.title" placeholder="Comment Title..." required>
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="Comment Content"></label>
+        <input class="form-control" v-model="state.newComment.content" placeholder="Comment Content...">
+      </div>
+      <button class="btn btn-primary" type="submit">
+        edit comment
+      </button>
+    </form>
+  </div>
 </template>
 
 <script>

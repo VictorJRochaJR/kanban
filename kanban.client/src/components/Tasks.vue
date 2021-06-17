@@ -1,9 +1,17 @@
 <template>
-  <h1>tasks list</h1>
-  <span class="click" @click="selectTask">{{ task.title }}</span>
-  <button @click="deleteTask">
-    delete task
-  </button>
+  <div class="row justify-content-between">
+    <div class="border click col-8 text-center" @click="selectTask">
+      <span>{{ task.title }}</span>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-info" @click="move">
+        move
+      </button>
+      <button class="btn btn-danger ml-3 m-2" @click="deleteTask" title="Delete task">
+        X
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,13 +30,16 @@ export default {
     return {
       state,
       selectTask() {
-        console.log(props.task)
         AppState.activeTask = props.task
       },
-      async deleteTask(props) {
+      move() {
+        AppState.movingTask = props.task
+        this.deleteTask()
+      },
+      async deleteTask() {
         try {
           if (await Notification.confirmAction('Do you really want to delete this task?')) {
-            await tasksService.deleteByTaskId(props.task.id)
+            await tasksService.deleteByTaskId(props.task)
           }
         } catch (error) {
           Notification.toast(error.message)

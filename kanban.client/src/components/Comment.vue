@@ -1,17 +1,18 @@
 <template>
-  <h1>Comment Component</h1>
   <div>
     <span class="rounded-circle creator-img">{{ comment.creatorId.picture }}</span>
     <span>{{ comment.creatorId.name }}</span>
   </div>
   <h2>{{ comment.title }}</h2>
   <p>{{ comment.content }}</p>
-  <EditComment :comment="comment" />
-  <button class="btn btn-primary" @click="showEditForm">
-    edit comment
+  <div v-if="state.editComment">
+    <EditComment :comment="comment" />
+  </div>
+  <button class="btn btn-info" @click="showEditForm">
+    {{ state.editComment ? 'cancel' : 'edit comment' }}
   </button>
-  <button class="btn btn-primary" @click="deleteComment">
-    delete comment
+  <button class="btn btn-danger" title="Delete Comment" @click="deleteComment">
+    X
   </button>
 </template>
 
@@ -23,13 +24,17 @@ export default {
   props: {
     comment: { type: Object, required: true }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
-
+      editComment: false
     })
     return {
       state,
-      async deleteComment(props) {
+      showEditForm() {
+        console.log(props.comment)
+        state.editComment = !state.editComment
+      },
+      async deleteComment() {
         try {
           if (await Notification.confirmAction('Do you really want to delete this comment?')) {
             await commentsService.deleteByCommentId(props.comment.id)

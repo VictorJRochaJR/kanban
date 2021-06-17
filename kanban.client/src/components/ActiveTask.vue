@@ -1,14 +1,23 @@
 <template>
-  <div>
-    <h1>Task Component</h1>
-    <EditTask />
-  </div>
-  <div>
+  <div class="border col-12 p-0">
+    <h4 class="pb-3" v-if="!state.taskEdit">
+      {{ state.task.title }}
+    </h4>
+    <button class="btn btn-info" @click="toggleTaskEdit">
+      {{ state.taskEdit ? 'cancel' : 'edit task' }}
+    </button>
+    <div v-if="state.taskEdit">
+      <EditTask />
+    </div>
+    <h4>Comments</h4>
     <CreateComment />
+    <div class="border bg-white p-5">
+      <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
+    </div>
   </div>
-  <div>
-    <Comment v-for="comment in comments" :key="comment.id" :comment="comment" />
-  </div>
+  <button @click="back" class="btn btn-danger">
+    back
+  </button>
 </template>
 
 <script>
@@ -20,18 +29,26 @@ import { commentsService } from '../services/CommentsService'
 export default {
   setup() {
     const state = reactive({
-      comments: computed(() => AppState.comments),
-      task: computed(() => AppState.activeTask)
+      comments: computed(() => AppState.comments[AppState.activeTask.id]),
+      task: computed(() => AppState.activeTask),
+      taskEdit: false
     })
     watchEffect(async() => {
       try {
+        console.log(AppState.comments)
         await commentsService.getCommentsById(AppState.activeTask.id)
       } catch (error) {
         Notification.toast(error.message)
       }
     })
     return {
-      state
+      state,
+      toggleTaskEdit() {
+        state.taskEdit = !state.taskEdit
+      },
+      back() {
+        AppState.activeTask = {}
+      }
     }
   }
 }

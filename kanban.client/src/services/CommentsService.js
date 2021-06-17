@@ -6,12 +6,13 @@ class CommentsService {
   async getCommentsById(taskId) {
     const res = await api.get('api/comments/' + taskId)
     logger.log(res)
-    AppState.comments = res.data
+    AppState.comments[taskId] = res.data
   }
 
   async createComment(commentData) {
     const res = await api.post('api/comments', commentData)
     logger.log(res)
+    AppState.comments[commentData.cardId].push(res.data)
     this.getCommentsById(AppState.activeTask.id)
   }
 

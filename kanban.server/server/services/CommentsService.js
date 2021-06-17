@@ -3,7 +3,8 @@ import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
   async getCommentsById(taskId) {
-    const comment = await dbContext.Comment.find({ taskId: taskId }).populate('taskId')
+    const comment = await dbContext.Comment.find({ taskId: taskId })
+    comment.populate('creatorId').execPopulate()
     if (!comment) {
       throw new BadRequest('invalid service')
     }
@@ -12,13 +13,13 @@ class CommentsService {
 
   async createComment(commentData) {
     const comment = await dbContext.Comment.create(commentData)
-    await comment.populate('creatorId')
+    await comment.populate('creatorId').execPopulate()
     return comment
   }
 
   async editComment(commentId, commentData) {
     const comment = await dbContext.Comment.findByIdAndUpdate(commentId, commentData, { new: true })
-    await comment.populate('creatorId')
+    await comment.populate('creatorId').execPopulate()
     return comment
   }
 

@@ -1,9 +1,13 @@
 <template>
-  <form @submit.prevent="createTask">
-    <label class="sr-only" for="Task Title"></label>
-    <input v-model="state.newTask.title" placeholder="Task Title..." required>
-    <label class="sr-only" for="Task Content"></label>
-    <input v-model="state.newTask.content" placeholder="Task Content..." required>
+  <form class="border py-1 my-3" @submit.prevent="createTask">
+    <div class="form-group">
+      <label class="sr-only" for="Task Title"></label>
+      <input class="form-control" v-model="state.newTask.title" placeholder="Task Title..." required>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="Task Content"></label>
+      <input class="form-control" v-model="state.newTask.content" placeholder="Task Content..." required>
+    </div>
     <button class="btn btn-primary" type="submit">
       create task
     </button>

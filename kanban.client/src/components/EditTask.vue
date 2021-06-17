@@ -1,12 +1,16 @@
 <template>
-  <h1>edit task</h1>
+  <h5>edit task</h5>
   <form @submit.prevent="editTask">
-    <label class="sr-only" for="Task Title"></label>
-    <input v-model="state.newTask.title" placeholder="Task Title..." required>
-    <label class="sr-only" for="Task Content"></label>
-    <input v-model="state.newTask.content" placeholder="Task Content...">
+    <div class="form-group">
+      <label for="Task Title">task title</label>
+      <input class="form-control" v-model="state.newTask.title" required>
+    </div>
+    <div class="form-group">
+      <label for="Task Content">task content</label>
+      <input class="form-control" v-model="state.newTask.content">
+    </div>
     <button class="btn btn-primary" type="submit">
-      edit task
+      submit edit
     </button>
   </form>
 </template>
