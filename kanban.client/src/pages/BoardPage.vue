@@ -6,8 +6,7 @@
     <div class="row">
       <ActiveTask v-if="state.task.id" />
       <Card v-else />
-
-      <div v-if="!state.task.id" class="col-md-4 card">
+      <div v-if="!state.task.id" class="col-md-4 bg-white shadow border rounded">
         <span @click.stop="isHidden">Add New Card</span>
         <form id="create-card-form" v-if="state.formHidden" @submit.prevent="createCard">
           <input type="
