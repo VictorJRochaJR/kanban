@@ -76,7 +76,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
 
 .height{
-  height: 80%;
+  min-height: calc(100vh - (88px + 35px)) ;
 }
 
 .createform{
