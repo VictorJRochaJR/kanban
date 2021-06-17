@@ -1,21 +1,28 @@
 <template>
-  <div class="border col-12 p-0">
-    <h4 class="pb-3" v-if="!state.taskEdit">
-      {{ state.task.title }}
-    </h4>
+  <div class="border col-12 p-3 mb-5 mt-3">
+    <div v-if="!state.taskEdit">
+      <h4 class="pb-3">
+        {{ state.task.title }}
+      </h4>
+      <p>{{ state.task.content }}</p>
+    </div>
     <button class="btn btn-info" @click="toggleTaskEdit">
       {{ state.taskEdit ? 'cancel' : 'edit task' }}
     </button>
     <div v-if="state.taskEdit">
       <EditTask />
     </div>
-    <h4>Comments</h4>
+  </div>
+  <div class="border shadow col-12 p-0">
+    <h4 class="m-2">
+      Comments
+    </h4>
     <CreateComment />
     <div class="border bg-white p-5">
       <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
     </div>
   </div>
-  <button @click="back" class="btn btn-danger">
+  <button @click="back" class="btn btn-danger mt-5 col">
     back
   </button>
 </template>

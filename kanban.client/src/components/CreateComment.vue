@@ -1,20 +1,21 @@
 <template>
-  <div class="add" @click="toggleForm" v-if="!state.toggle">
+  <div class="add bg-white" @click="toggleForm" v-if="!state.toggle">
     + add task
   </div>
-  <form @submit.prevent="createComment">
-    <div class="form-group">
-      <label class="sr-only" for="Comment Title"></label>
-      <input v-model="state.newComment.title" placeholder="Comment Title..." required>
-    </div>
-    <div class="form-group">
-      <label class="sr-only" for="Comment Content"></label>
-      <input v-model="state.newComment.content" placeholder="Comment Content...">
-    </div>
-    <button class="btn btn-primary" type="submit">
-      post comment
+  <div class="border shadow p-3 m-3" v-if="state.toggle">
+    <form @submit.prevent="createComment">
+      <div class="form-group">
+        <label class="sr-only" for="Comment"></label>
+        <input v-model="state.newComment.title" placeholder="Comment..." required>
+      </div>
+      <button class="btn btn-primary" type="submit">
+        post comment
+      </button>
+    </form>
+    <button class="btn btn-danger" @click="toggleForm">
+      cancel
     </button>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -52,5 +53,18 @@ export default {
 </script>
 
 <style>
-
+.add{
+  height: 60px;
+  cursor: pointer;
+  color: rgba(88, 88, 88, 0.623);
+  border: 3px;
+  border-style:dashed;
+  background-color: transparent;
+  transition: all 1s;
+  transform: scale(.9)
+}
+.add:hover{
+  transform: scale(1);
+  color: rgba(40, 172, 36, 0.671);
+}
 </style>

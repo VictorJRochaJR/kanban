@@ -2,7 +2,7 @@
   <div class="add" @click="toggleForm" v-if="!state.toggle">
     + add task
   </div>
-  <div v-if="state.toggle" class="border bg-light shadow">
+  <div v-if="state.toggle" class="border bg- shadow">
     <form class="p-2 my-3" @submit.prevent="createTask">
       <div class="form-group shadow">
         <label class="sr-only" for="Task Title"></label>
