@@ -26,7 +26,13 @@
     <form @submit.prevent="updateBoard">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <button type="button" class="btn d-flex justify-content-end p-0 mr-3 mt-1" data-dismiss="modal">
+            <i class="mdi mdi-close-thick mdi-24px"></i>
+          </button>
+          <h4 class="d-flex justify-content-center">
+            Board Info
+          </h4>
+          <div class="modal-header p-0 px-3 pb-1">
             <label class="sr-only" for="Board Title"></label>
             <input v-model="state.activeBoard.title" class="modal-title w-100" placeholder="Board Title..." required>
           </div>
@@ -34,14 +40,11 @@
             <label class="sr-only" for="Board Image URL"></label>
             <input v-model="state.activeBoard.backgroundImg" class="modal-title w-100" placeholder="Img URL...">
           </div>
-          <div class="modal-footer">
-            <button @click="deleteByBoardId" type="button" class="btn btn-danger" data-dismiss="modal">
+          <div class="modal-footer d-flex justify-content-between">
+            <button @click="deleteByBoardId" type="button" class=" myDButton" data-dismiss="modal">
               Delete
             </button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class=" myUButton">
               Update
             </button>
           </div>
@@ -144,5 +147,53 @@ color: rgb(221, 169, 0);
 .my-text{
 
 text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+}
+
+.myDButton {
+background:linear-gradient(to bottom, #940d0d 5%, #cc0c0c 100%);
+background-color:#940d0d;
+border-radius:36px;
+border:1px solid #850808;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:Arial;
+font-size:16px;
+padding:2px 12px;
+text-decoration:none;
+}
+.myDButton:hover {
+background:linear-gradient(to bottom, #cc0c0c 5%, #940d0d 100%);
+background-color:#cc0c0c;
+
+}
+
+.myDButton:active {
+position:relative;
+top:1px;
+}
+
+.myUButton {
+background:linear-gradient(to bottom, #0f0d94 5%, #0c39cc 100%);
+background-color:#0d0f94;
+border-radius:36px;
+border:1px solid #080a85;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:Arial;
+font-size:16px;
+padding:2px 12px;
+text-decoration:none;
+}
+.myUButton:hover {
+background:linear-gradient(to bottom, #0c1fcc 5%, #0d1694 100%);
+background-color:#0c0fcc;
+
+}
+
+.myUButton:active {
+position:relative;
+top:1px;
 }
 </style>
