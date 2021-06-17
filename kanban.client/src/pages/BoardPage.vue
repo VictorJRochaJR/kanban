@@ -39,7 +39,7 @@ export default {
   setup() {
     onMounted(async() => {
       try {
-        AppState.activeBoard = await boardsService.getOneBoard(route.params.boardId)
+        await boardsService.getOneBoard(route.params.boardId)
       } catch (error) {
         Notification.toast(error.message)
       }
