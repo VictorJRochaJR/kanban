@@ -24,9 +24,10 @@ class CardsService {
   }
 
   async deleteByCardId(card) {
+    console.log(card)
     const res = await api.delete('api/cards/' + card.id)
     logger.log(res)
-    this.getCardsById(card.boardId)
+    this.getCardsById(card.boardId.id)
   }
 }
 

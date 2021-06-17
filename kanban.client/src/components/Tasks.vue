@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-between my-3 p-3 shadow border rounded fill">
+  <div class="row justify-content-between my-3 p-3 shadow border rounded">
     <div class="click text-left col" @click="selectTask">
       <span>{{ task.title }}</span>
     </div>
@@ -63,8 +63,5 @@ export default {
 <style scope>
 .click{
   cursor: pointer;
-}
-.fill{
-  min-width: 90%;
 }
 </style>
