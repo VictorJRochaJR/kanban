@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row m-3">
     <CardTemplate v-for="c in state.cards" :key="c.id" :card="c" />
   </div>
 </template>
