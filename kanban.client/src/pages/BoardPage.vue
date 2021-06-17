@@ -2,7 +2,7 @@
   <div class="container-fluid" :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
     <div class="row justify-content-center py-5">
       <h1 class="my-text">
-        My Board Title
+        {{ state.board.title }}
       </h1>
     </div>
     <div class="y-scroll">
