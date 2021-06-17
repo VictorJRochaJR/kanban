@@ -1,18 +1,25 @@
 <template>
   <div class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill">
-    <div class="d-flex justify-content-between">
-      <span>
-        {{ card.title }}
-      </span>
-      <button class="btn btn-danger text-alignt: right;" @click="deleteByCardId">
-        X
-      </button>
+    <div class="row">
+      <div class="col-7 d-flex justify-content-end p-0">
+        <span>
+          <h4 class="my-text">
+            {{ card.title }}
+          </h4>
+        </span>
+      </div>
+      <div class="col-5 d-flex justify-content-end p-0">
+        <button class="btn btn-danger" title="delete card" @click="deleteByCardId">
+          X
+        </button>
+      </div>
     </div>
+
     <Tasks v-for="task in state.tasks" :key="task.id" :task="task" />
     <CreateTask :card-id="card.id" />
   </div>
-  <div>
-    <!-- <button class="btn btn-primary" @click="editCard">
+
+  <!-- <button class="btn btn-primary" @click="editCard">
         Edit
       </button>
       <form @submit.prevent="editCard" class="mt-4 border bg-primary p-3">
@@ -27,7 +34,6 @@
           >
         </div>
       </form> -->
-  </div>
 </template>
 <script>
 import { reactive } from '@vue/reactivity'
@@ -73,7 +79,15 @@ export default {
 </script>
 
     <style lang="scss" scoped>
+    @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
     .fill{
       height: 70vh;
     }
+    .my-text{
+font-family: 'Reggae One', cursive;
+color: white;
+text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+}
+
     </style>

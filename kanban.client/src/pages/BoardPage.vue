@@ -1,24 +1,27 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center py-5">
-      <h1>My Board Title</h1>
+      <h1 class="my-text">
+        My Board Title
+      </h1>
     </div>
     <div class="row">
       <ActiveTask v-if="state.task.id" />
       <Card v-else />
-
-      <div v-if="!state.task.id" class="col-md-4 card text">
-        <span @click.stop="isHidden">Add New Card</span>
-        <form id="create-card-form" v-if="state.formHidden" @submit.prevent="createCard">
-          <input type="
+      <div v-if="!state.task.id" class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill colheight">
+        <div class="text-center">
+          <span @click.stop="isHidden"><h4 class="my-text" style="cursor: pointer;" title="add card">Add New Card</h4></span>
+          <form id="create-card-form" v-if="state.formHidden" @submit.prevent="createCard">
+            <input type="
           text"
-                 v-model="state.newCard.title"
-                 placeholder="Add Card"
-          >
-          <button class="btn btn-primary">
-            Submit
-          </button>
-        </form>
+                   v-model="state.newCard.title"
+                   placeholder="Add Card"
+            >
+            <button class="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -60,9 +63,21 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
 .createform{
   min-width: 90vh
 }
+
+.colheight{
+  height: 20%;
+}
+ .my-text{
+font-family: 'Reggae One', cursive;
+color: white;
+text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+}
+
 /* *{
   outline: 1px solid red;
 } */
