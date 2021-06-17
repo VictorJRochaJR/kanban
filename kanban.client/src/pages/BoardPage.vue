@@ -1,11 +1,11 @@
 <template>
-  <div class="container-fluid" :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
-    <div class="row justify-content-center py-5">
+  <div class="container-fluid " :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
+    <div class="row justify-content-center py-3">
       <h1 class="my-text">
         {{ state.board.title }}
       </h1>
     </div>
-    <div class="y-scroll">
+    <div class="y-scroll height">
       <ActiveTask v-if="state.task.id" />
       <Card v-else />
       <div v-if="!state.task.id" class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill colheight">
@@ -75,6 +75,10 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
 
+.height{
+  height: 80%;
+}
+
 .createform{
   min-width: 90vh
 }
@@ -91,6 +95,7 @@ text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rg
   overflow-x: auto;
   display: flex;
   flex-direction: row;
+  overflow-y: hidden;
 }
 /* *{
   outline: 1px solid red;
