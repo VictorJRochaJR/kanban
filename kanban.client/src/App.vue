@@ -4,7 +4,7 @@
   <main>
     <router-view />
   </main>
-  <footer>
+  <footer class="fixed-bottom">
     <div class="d-flex justify-content-center my-footer py-1">
       <p class="p-0 m-0">
         <a target="_blank" title="Github" href="https://github.com/dhildeb"><i
