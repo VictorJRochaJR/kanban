@@ -4,7 +4,7 @@ import { api } from './AxiosService'
 
 class CardsService {
   async getCardsById(boardId) {
-    console.log(boardId)
+    console.log('boardId', boardId)
     const res = await api.get('api/cards/' + boardId)
     logger.log(res, 'getcards')
     AppState.cards = res.data
@@ -18,7 +18,7 @@ class CardsService {
   }
 
   async editCard(cardData, cardProp) {
-    debugger
+    console.log(cardData.id, 'cardid')
     await api.put('api/cards/' + cardData.id, cardData.title)
     this.getCardsById(cardProp.boardId)
   }

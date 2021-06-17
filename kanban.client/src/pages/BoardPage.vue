@@ -1,21 +1,27 @@
 <template>
   <div class="container">
-    <div class="row" v-if="!state.task.id">
-      <h3>Add card</h3>
-      <form id="create-card-form" @submit.prevent="createCard">
-        <input type="
-          text"
-               v-model="state.newCard.title"
-               placeholder="title"
-        >
-        <button class="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
     <div class="row">
-      <ActiveTask v-if="state.task.id" />
-      <Card v-else />
+      <div class="d-flex justify-content-center">
+        <ActiveTask v-if="state.task.id" />
+        <Card v-else />
+        <div v-if="!state.task.id">
+          <div class="col-md-4 card justify-content-center " @click="isHidden">
+            <span>Add New Card</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <form id="create-card-form" v-if="state.formHidden" @submit.prevent="createCard">
+              <input type="
+          text"
+                     v-model="state.newCard.title"
+                     placeholder="Add Card"
+              >
+              <button class="btn btn-primary">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -35,12 +41,12 @@ export default {
       newCard: {
         boardId: route.params.boardId
       },
-      formhidden: true
+      formHidden: false
     })
     return {
       state,
       isHidden() {
-        state.formhidden = !state.formhidden
+        state.formHidden = !state.formHidden
       },
       async createCard() {
         try {
@@ -56,6 +62,9 @@ export default {
 </script>
 
 <style>
+.createform{
+  min-width: 90vh
+}
 /* *{
   outline: 1px solid red;
 } */
