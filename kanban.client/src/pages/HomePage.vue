@@ -2,7 +2,7 @@
   <div v-if="!state.user.isAuthenticated" class=" container-fluid home-bg my-text">
     <div class="row d-none d-md-block invisrow">
     </div>
-    <div class="row justify-content-center my-5 text-center">
+    <div class="row justify-content-center my-5 text-center" title="Welcome To Kanban!">
       <h1 class="main-title">
         Welcome to Kanban!
       </h1>
