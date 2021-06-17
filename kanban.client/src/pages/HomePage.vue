@@ -1,14 +1,16 @@
 <template>
   <div v-if="!state.user.isAuthenticated" class=" container-fluid home-bg my-text">
-    <div class="row justify-content-center mt-5 text-center">
-      <h1>
+    <div class="row d-none d-md-block invisrow">
+    </div>
+    <div class="row justify-content-center my-5 text-center">
+      <h1 class="main-title">
         Welcome to Kanban!
       </h1>
     </div>
 
     <div class="row mt-3">
       <div class="col my-auto d-flex justify-content-center">
-        <button @click="login" title="Sign Out" class="myButton ">
+        <button @click="login" title="Sign In" class="myButton ">
           Sign In
         </button>
       </div>
@@ -20,7 +22,7 @@
       <div class="col d-flex justify-content-center my-text mb-2 my-top-m">
         <h2><u>My Kanban Boards</u></h2>
       </div>
-      <button @click="logout" title="Sign In" class="myButton2 m-4 pos-ab">
+      <button @click="logout" title="Sign Out" class="myButton2 m-4 pos-ab">
         Sign Out
       </button>
     </div>
@@ -60,6 +62,37 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+.invisrow{
+  min-height: 9rem;
+}
+
+.main-title {
+  animation: swing 3s infinite ease-in-out, color-change 10s infinite;
+  font-size: 64px;
+}
+
+@keyframes swing{
+  0%,
+  100% { transform: rotate(-10deg); }
+  20% {transform:scale(.95);}
+  50% { transform: rotate(10deg); }
+  80% {transform:scale(.95);}
+}
+
+@keyframes color-change {
+
+  0% { color: red; }
+  12.5% { color: rgb(255, 136, 0); }
+  25% { color: rgb(255, 238, 0); }
+  37.5% { color: rgb(136, 255, 0); }
+  50% { color: rgb(0, 255, 76); }
+  62.5% { color: rgb(0, 255, 234); }
+  75% { color: rgb(0, 60, 255); }
+  87.5% { color: rgb(255, 0, 255); }
+  100% { color: red; }
+  }
+
 .pos-ab{
   position: absolute;
 }

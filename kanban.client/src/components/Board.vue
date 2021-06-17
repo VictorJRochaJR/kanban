@@ -3,14 +3,14 @@
     <div class="card my-card mx-4 mt-4" title="Open Board" @click.stop="openBoard" :style="{'background-image': 'url(' + board.backgroundImg + ')'}">
       <div class="">
         <div class="rounded-circle my-btn-bg ab-pos">
-          <i data-toggle="modal" data-target="#editmodal" @click.stop="editBoard" title="Edit Board" class="my-edit mdi mdi-pencil mdi-12px px-1">
+          <i data-toggle="modal" data-target="#editmodal" @click.stop="editBoard" title="Edit Board" class="my-edit mdi mdi-pencil mdi-24px px-1">
           </i>
         </div>
       </div>
       <div class="row justify-content-center my-auto">
-        <h5 class="my-text m-1">
+        <h4 class="my-text m-1 ">
           {{ board.title }}
-        </h5>
+        </h4>
       </div>
     </div>
   </div>
@@ -131,13 +131,15 @@ color: rgb(221, 169, 0);
 .my-card{
   cursor: pointer;
   height: 13rem;
-  color: white;
-  transition: all, 1s;
   background-size: cover;
+  border:double;
+  border-color: rgba(255, 255, 255, 0.253);
+  transition: all, 1s;
 }
 .my-card:hover{
-
-  color: rgb(211, 255, 215);
+  color: black;
+  border-color: blueviolet;
+  transform: scale(1.05);
 }
 .my-text{
 
