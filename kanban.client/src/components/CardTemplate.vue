@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 card align-items-center">
+  <div class="col-md-4 mx-2 card align-items-center fill">
     <div class="d-flex justify-content-between">
       <span>
         {{ card.title }}
@@ -74,6 +74,6 @@ export default {
 
     <style lang="scss" scoped>
     .fill{
-      width: 90%;
+      height: 70vh;
     }
     </style>

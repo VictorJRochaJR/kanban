@@ -23,10 +23,10 @@ class CardsService {
     this.getCardsById(cardProp.boardId)
   }
 
-  async deleteByCardId(cardId) {
-    const res = await api.delete('api/cards/' + cardId)
+  async deleteByCardId(card) {
+    const res = await api.delete('api/cards/' + card.id)
     logger.log(res)
-    this.getCardsById(AppState.activeBoard.id)
+    this.getCardsById(card.boardId)
   }
 }
 
