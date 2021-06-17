@@ -54,7 +54,8 @@ export default {
       state,
       async deleteByCardId() {
         if (await Notification.confirmAction('Are you sure you want to delete?')) {
-          cardsService.deleteByCardId(props.card.id)
+          cardsService.deleteByCardId(props.card)
+          cardsService.getCardsById(props.card.boardId)
           console.log(props.card.id, 'deleted card')
         }
       }
