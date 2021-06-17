@@ -1,30 +1,32 @@
 <template>
-  <div class="border col-12 p-3 mb-5 mt-3">
-    <div v-if="!state.taskEdit">
-      <h4 class="pb-3">
-        {{ state.task.title }}
+  <div class="bg-light w-75 p-4 my-text text-wrap m-auto">
+    <div class="border p-3 mb-5 mt-3">
+      <div v-if="!state.taskEdit">
+        <h4 class="pb-3">
+          {{ state.task.title }}
+        </h4>
+        <p>{{ state.task.content }}</p>
+      </div>
+      <!-- <button class="btn btn-info" @click="toggleTaskEdit">
+        {{ state.taskEdit ? 'cancel' : 'edit task' }}
+      </button>
+      <div v-if="state.taskEdit">
+        <EditTask />
+      </div> -->
+    </div>
+    <div class="border shadow p-0">
+      <h4 class="m-2">
+        Comments
       </h4>
-      <p>{{ state.task.content }}</p>
+      <CreateComment />
+      <div class="border bg-white p-5">
+        <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
+      </div>
     </div>
-    <button class="btn btn-info" @click="toggleTaskEdit">
-      {{ state.taskEdit ? 'cancel' : 'edit task' }}
+    <button @click="back" class="btn btn-danger mt-5 col">
+      back
     </button>
-    <div v-if="state.taskEdit">
-      <EditTask />
-    </div>
   </div>
-  <div class="border shadow col-12 p-0">
-    <h4 class="m-2">
-      Comments
-    </h4>
-    <CreateComment />
-    <div class="border bg-white p-5">
-      <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
-    </div>
-  </div>
-  <button @click="back" class="btn btn-danger mt-5 col">
-    back
-  </button>
 </template>
 
 <script>
@@ -62,5 +64,12 @@ export default {
 </script>
 
 <style>
-
+ .my-text{
+font-family: 'Reggae One', cursive;
+color: white;
+text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+}
+.text-wrap{
+      overflow-wrap: anywhere;
+}
 </style>

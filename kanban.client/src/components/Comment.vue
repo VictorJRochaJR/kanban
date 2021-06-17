@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <span class="rounded-circle creator-img">{{ comment.creatorId.picture }}</span>
-    <span>{{ comment.creatorId.name }}</span>
+  <div class="d-flex border-bottom my-3">
+    <div class="d-flex flex-column mr-3">
+      <img class="rounded-circle creator-img" :src="comment.creatorId.picture">
+      <span>{{ comment.creatorId.name }}</span>
+    </div>
+    <p>"{{ comment.title }}"</p>
+    <p>{{ comment.content }}</p>
+    <button class="btn btn-danger m-4" title="Delete Comment" @click="deleteComment">
+      X
+    </button>
   </div>
-  <h2>{{ comment.title }}</h2>
-  <p>{{ comment.content }}</p>
-  <div v-if="state.editComment">
+  <!-- <div v-if="state.editComment">
     <EditComment :comment="comment" />
   </div>
   <button class="btn btn-info" @click="showEditForm">
     {{ state.editComment ? 'cancel' : 'edit comment' }}
-  </button>
-  <button class="btn btn-danger" title="Delete Comment" @click="deleteComment">
-    X
-  </button>
+  </button> -->
 </template>
 
 <script>
