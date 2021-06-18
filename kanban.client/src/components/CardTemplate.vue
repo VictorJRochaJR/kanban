@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <Tasks v-for="task in state.tasks" @draggable="true" :key="task.id" :task="task" :color="card.cardColor" />
+    <Tasks v-for="task in state.tasks" :key="task.id" :task="task" :color="card.cardColor" />
     <CreateTask :card-id="card.id" :color="card.cardColor" />
   </div>
 

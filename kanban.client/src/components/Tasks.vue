@@ -1,7 +1,7 @@
 <template>
-  <div @dragstart="prepToMove" class="row justify-content-between my-3 p-3 shadow border rounded bg-white">
-    <div class="click text-left col" @click="selectTask">
-      <b :style="{'color': color}">{{ task.title }}</b>
+  <div @dragstart="prepToMove" draggable="true" class="row justify-content-between my-3 p-3 shadow border rounded bg-white">
+    <div class="click text-left col">
+      <b @click="selectTask" :style="{'color': color}">{{ task.title }}</b>
     </div>
     <div class="dropdown click text-secondary align-top"
          id="dropdownMenuButton"
