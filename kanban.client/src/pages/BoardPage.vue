@@ -13,13 +13,16 @@
       <Card v-else />
       <div v-if="!state.task.id" class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill colheight">
         <div class="text-center">
-          <span @click.stop="isHidden"><h4 class="my-text" style="cursor: pointer;" title="add card">Add New Card</h4></span>
+          <span @click.stop="isHidden"><h4 class="my-text click" title="add card">Add New Card</h4></span>
           <form id="create-card-form" v-if="state.formHidden" @submit.prevent="createCard">
-            <input type="
-          text"
-                   v-model="state.newCard.title"
-                   placeholder="Add Card"
-            >
+            <div class="form-group">
+              <label class="sr-only" for="card title"></label>
+              <input type="text" v-model="state.newCard.title" placeholder="Add Card">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="card color"></label>
+              <input type="color" title="card color" v-model="state.newCard.cardColor">
+            </div>
             <button class="btn btn-primary">
               Submit
             </button>
@@ -69,6 +72,7 @@ export default {
         state.formHidden = !state.formHidden
       },
       async createCard() {
+        console.log(state.newCard)
         try {
           await cardsService.createCard(state.newCard)
         } catch (error) {
@@ -130,6 +134,9 @@ text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rg
   display: flex;
   flex-direction: row;
   overflow-y: hidden;
+}
+.click{
+  cursor: pointer;
 }
 /* *{
   outline: 1px solid red;

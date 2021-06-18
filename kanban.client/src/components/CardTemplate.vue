@@ -1,14 +1,14 @@
 <template>
   <div dropzone="zone" @dragover.prevent @drop.prevent="moveTask" class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill x-scroll">
     <div class="row">
-      <div class="col-7 d-flex justify-content-end p-0">
+      <div class="col d-flex justify-content-center p-0" :style="{'background-color': card.cardColor}">
         <span>
           <h4 class="my-text">
             {{ card.title }}
           </h4>
         </span>
       </div>
-      <div class="col-5 d-flex justify-content-end p-0">
+      <div class="d-flex justify-content-end p-0">
         <button class="btn btn-danger" title="delete card" @click="deleteByCardId">
           X
         </button>
