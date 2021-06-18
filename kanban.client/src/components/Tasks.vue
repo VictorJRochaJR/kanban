@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-between my-3 p-3 shadow border rounded">
+  <div @dragstart="prepToMove" class="row justify-content-between my-3 p-3 shadow border rounded">
     <div class="click text-left col" @click="selectTask">
       <span>{{ task.title }}</span>
     </div>
@@ -42,9 +42,8 @@ export default {
       selectTask() {
         AppState.activeTask = props.task
       },
-      move() {
-        AppState.movingTask = props.task
-        this.deleteTask()
+      prepToMove() {
+        tasksService.prepToMove(props.task)
       },
       async deleteTask() {
         try {

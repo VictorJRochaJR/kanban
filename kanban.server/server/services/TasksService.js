@@ -10,8 +10,8 @@ class TasksService {
     return task
   }
 
-  async getTasksById(cardId) {
-    const task = await dbContext.Task.find({ cardId: cardId }).populate('cardId')
+  async getTasksById(id) {
+    const task = await dbContext.Task.find({ cardId: id })
     if (!task) {
       throw new BadRequest('invalid service')
     }

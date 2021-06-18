@@ -17,7 +17,6 @@ export default {
       cards: computed(() => AppState.cards)
     })
     watchEffect(async() => {
-      console.log(route.params)
       if (AppState.account.id) {
         try {
           await cardsService.getCardsById(route.params.boardId)

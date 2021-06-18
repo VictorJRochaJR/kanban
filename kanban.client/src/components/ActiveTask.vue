@@ -44,7 +44,6 @@ export default {
     })
     watchEffect(async() => {
       try {
-        console.log(AppState.comments)
         await commentsService.getCommentsById(AppState.activeTask.id)
       } catch (error) {
         Notification.toast(error.message)

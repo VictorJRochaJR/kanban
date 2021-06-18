@@ -33,7 +33,6 @@ export default {
     return {
       state,
       showEditForm() {
-        console.log(props.comment)
         state.editComment = !state.editComment
       },
       async deleteComment() {

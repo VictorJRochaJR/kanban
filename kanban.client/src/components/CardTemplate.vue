@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill x-scroll">
+  <div dropzone="zone" @dragover.prevent @drop.prevent="moveTask" class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill x-scroll">
     <div class="row">
       <div class="col-7 d-flex justify-content-end p-0">
         <span>
@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <Tasks v-for="task in state.tasks" :key="task.id" :task="task" />
+    <Tasks v-for="task in state.tasks" @draggable="true" :key="task.id" :task="task" />
     <CreateTask :card-id="card.id" />
   </div>
 
@@ -50,7 +50,6 @@ export default {
   setup(props) {
     const state = reactive({
       editedCard: { id: props.card.id },
-
       tasks: computed(() => AppState.tasks[props.card.id])
     })
     watchEffect(() => {
@@ -62,8 +61,10 @@ export default {
         if (await Notification.confirmAction('Are you sure you want to delete?')) {
           cardsService.deleteByCardId(props.card)
           cardsService.getCardsById(props.card.boardId)
-          console.log(props.card.id, 'deleted card')
         }
+      },
+      moveTask() {
+        tasksService.moveTask(props.card.id)
       }
       // async editCard() {
       //   try {
@@ -92,5 +93,4 @@ text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rg
 .x-scroll{
   overflow-y: auto;
 }
-
     </style>

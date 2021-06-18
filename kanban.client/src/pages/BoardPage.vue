@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid " :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
+  <div class="container-fluid" :style="{'background-image': 'url(' + state.board.backgroundImg + ')'}">
     <button class="myButton2 pos-ab m-4" title="your boards" @click="boardPage()">
       Your Boards
     </button>
@@ -38,6 +38,7 @@ import { AppState } from '../AppState'
 import { cardsService } from '../services/CardsService'
 import { useRoute, useRouter } from 'vue-router'
 import { boardsService } from '../services/BoardsService'
+import Notification from '../utils/Notification'
 export default {
   name: 'Board',
   setup() {
@@ -69,10 +70,9 @@ export default {
       },
       async createCard() {
         try {
-          console.log('here')
           await cardsService.createCard(state.newCard)
         } catch (error) {
-          console.log(error)
+          Notification.toast(error.message)
         }
       }
     }
