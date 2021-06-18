@@ -1,11 +1,13 @@
 <template>
   <div class="bg-light w-75 p-4 my-text text-wrap m-auto">
-    <div class="border p-3 mb-5 mt-3">
+    <div class="border p-3 mb-5 mt-3 bg-dark">
       <div v-if="!state.taskEdit">
-        <h4 class="pb-3">
+        <h4 class="pb-3 border-bottom">
           {{ state.task.title }}
         </h4>
-        <p>{{ state.task.content }}</p>
+        <p class="ml-5">
+          {{ state.task.content }}
+        </p>
       </div>
       <!-- <button class="btn btn-info" @click="toggleTaskEdit">
         {{ state.taskEdit ? 'cancel' : 'edit task' }}
@@ -14,12 +16,12 @@
         <EditTask />
       </div> -->
     </div>
-    <div class="border shadow p-0">
+    <div class="border shadow p-0 bg-dark">
       <h4 class="m-2">
         Comments
       </h4>
       <CreateComment />
-      <div class="border bg-white p-5">
+      <div class="border bg-dark p-5">
         <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
       </div>
     </div>
@@ -71,4 +73,5 @@ text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rg
 .text-wrap{
       overflow-wrap: anywhere;
 }
+
 </style>

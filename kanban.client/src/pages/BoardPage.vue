@@ -72,7 +72,6 @@ export default {
         state.formHidden = !state.formHidden
       },
       async createCard() {
-        console.log(state.newCard)
         try {
           await cardsService.createCard(state.newCard)
         } catch (error) {

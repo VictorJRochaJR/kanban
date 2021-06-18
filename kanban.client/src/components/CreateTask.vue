@@ -1,5 +1,5 @@
 <template>
-  <div class="add" @click="toggleForm" v-if="!state.toggle">
+  <div class="add" @click="toggleForm" v-if="!state.toggle" :style="{'color': color}">
     + add task
   </div>
   <div v-if="state.toggle" class="border bg- shadow">
@@ -28,7 +28,8 @@ import Notification from '../utils/Notification'
 import { tasksService } from '../services/TasksService'
 export default {
   props: {
-    cardId: { type: String, required: true }
+    cardId: { type: String, required: true },
+    color: { type: String, required: true }
   },
   setup(props) {
     const state = reactive({

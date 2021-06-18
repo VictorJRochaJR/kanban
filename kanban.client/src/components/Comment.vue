@@ -1,11 +1,10 @@
 <template>
-  <div class="d-flex border-bottom my-3">
+  <div class="d-flex border-bottom my-3 bg-dark">
     <div class="d-flex flex-column mr-3">
       <img class="rounded-circle creator-img" :src="comment.creatorId.picture">
       <span>{{ comment.creatorId.name }}</span>
     </div>
     <p>"{{ comment.title }}"</p>
-    <p>{{ comment.content }}</p>
     <button class="btn btn-danger m-4" title="Delete Comment" @click="deleteComment">
       X
     </button>

@@ -1,12 +1,12 @@
 <template>
-  <div class="add bg-white" @click="toggleForm" v-if="!state.toggle">
-    + add task
+  <div class="add text-center bg-dark" @click="toggleForm" v-if="!state.toggle">
+    + add comment
   </div>
-  <div class="border shadow p-3 m-3" v-if="state.toggle">
+  <div class="border bg-light shadow p-3 m-3" v-if="state.toggle">
     <form @submit.prevent="createComment">
       <div class="form-group">
         <label class="sr-only" for="Comment"></label>
-        <input v-model="state.newComment.title" placeholder="Comment..." required>
+        <input v-model="state.newComment.title" type="textArea" rows="4" placeholder="Comment..." required>
       </div>
       <button class="btn btn-primary" type="submit">
         post comment
@@ -56,8 +56,8 @@ export default {
 .add{
   height: 60px;
   cursor: pointer;
-  color: rgba(88, 88, 88, 0.623);
   border: 3px;
+  border-color: #ffffff;
   border-style:dashed;
   background-color: transparent;
   transition: all 1s;
@@ -65,6 +65,5 @@ export default {
 }
 .add:hover{
   transform: scale(1);
-  color: rgba(40, 172, 36, 0.671);
 }
 </style>

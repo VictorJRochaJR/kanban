@@ -1,5 +1,5 @@
 <template>
-  <div dropzone="zone" @dragover.prevent @drop.prevent="moveTask" class="col-md-4 mx-2 border shadow bg-white rounded align-items-center fill x-scroll">
+  <div dropzone="zone" @dragover.prevent @drop.prevent="moveTask" class="col-md-4 mx-2 border shadow bg-light rounded align-items-center fill x-scroll">
     <div class="row">
       <div class="col d-flex justify-content-center p-0" :style="{'background-color': card.cardColor}">
         <span>
@@ -8,15 +8,26 @@
           </h4>
         </span>
       </div>
-      <div class="d-flex justify-content-end p-0">
-        <button class="btn btn-danger" title="delete card" @click="deleteByCardId">
-          X
-        </button>
+      <div class="d-flex justify-content-end align-top p-2" :style="{'background-color': card.cardColor}">
+        <div class="dropdown click text-light"
+             id="dropdownMenuButton"
+             data-toggle="dropdown"
+             aria-haspopup="true"
+             aria-expanded="false"
+             title="options"
+        >
+          <h1>...</h1>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button class="text-danger dropdown-item" @click="deleteByCardId" title="Delete task">
+            Delete Card
+          </button>
+        </div>
       </div>
     </div>
 
-    <Tasks v-for="task in state.tasks" @draggable="true" :key="task.id" :task="task" />
-    <CreateTask :card-id="card.id" />
+    <Tasks v-for="task in state.tasks" @draggable="true" :key="task.id" :task="task" :color="card.cardColor" />
+    <CreateTask :card-id="card.id" :color="card.cardColor" />
   </div>
 
   <!-- <button class="btn btn-primary" @click="editCard">
