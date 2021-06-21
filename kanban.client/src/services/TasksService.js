@@ -33,10 +33,12 @@ class TasksService {
 
   async moveTask(cardId) {
     const oldId = AppState.movingTask.cardId
+    const movingTask = AppState.movingTask
     AppState.movingTask.cardId = cardId
-    const res = await api.put('api/tasks/' + AppState.movingTask.id, AppState.movingTask)
+    const res = await api.put('api/tasks/' + movingTask.id, movingTask)
     // fix line 39 so it removes moved task from appstate
-    AppState.tasks[oldId].filter(t => t.id !== oldId)
+    const taskIndex = AppState.tasks[oldId].findIndex(t => t.id === movingTask.id)
+    AppState.tasks[oldId].splice(taskIndex, 1)
     AppState.tasks[cardId].push(res.data)
   }
 }
